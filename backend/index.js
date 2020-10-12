@@ -13,7 +13,7 @@ const host = '127.0.0.1';
 const puerto= '7000';
 const server=http.createServer((request,response) => {
   response.writeHead(200, {"Content-Type" : "text/plain"});
-  response.end('<h1>My APP</h1>');
+  response.end('My APP');
 });
 
 // settings con express
