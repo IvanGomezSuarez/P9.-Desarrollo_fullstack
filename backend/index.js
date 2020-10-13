@@ -25,10 +25,10 @@ app.use(express.urlencoded({extended: false})); //al rellenar formularios, crea 
 app.use(express.json()); //para poder entender json en procesos AJAX
 
 //routes
-//app.use(require('./routes/index'));
+
 //app.use(require('./routes/login'));
 //app.use(require('./routes/profile'));
-app.use(require('./routes/players'));
+//app.use(require('./routes/players'));
 //app.use(require('./routes/register'));
 
 // static files
