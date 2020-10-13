@@ -6,6 +6,7 @@ const path = require('path');*/
 
 // inicialiaciones con express
 //const app = express();
+//require('./database'); //requerimos a la conexion con mongoDB
 
 //settings sin expres
 const http = require('http');
