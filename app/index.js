@@ -6,7 +6,7 @@ let arrancaServer = (puerto) => {
         let filePath = request.url;
         let encoding = 'UTF-8';
         if (filePath == '/') {
-          filePath = 'login.html';
+          filePath = '/login.html';
         }
         filePath = `${__dirname}/templates`+filePath;
         fileExtension= path.extname(filePath);
