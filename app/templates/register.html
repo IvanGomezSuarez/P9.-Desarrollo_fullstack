@@ -50,16 +50,37 @@
                                     <label for="full_name" class="col-md-4 col-form-label text-md-right"></label>
                                     <div class="col-md-6">
                                         <div class="file-field">
-                                            <div class="mb-4 text-md-center">
-                                                <img src="placeholder-avatar.jpg"
-                                                    class="rounded-circle z-depth-1-half avatar-pic"
-                                                    alt="placeholder avatar">
-                                            </div>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFileLang"
-                                                    lang="es">
-                                                <label class="custom-file-label" for="customFileLang">Upload
+                                                <input type="file" class="custom-file-input" id="uploadAvatar"
+                                                    lang="en">
+                                                <label class="custom-file-label" for="uploadAvatar">Upload
                                                     avatar</label>
+                                            </div>
+                                            <label style="font-style:italic">Image must be jpeg</label>
+                                            <div class="mb-4 text-md-center">
+                                                <div>
+                                                    <!-- <img src="" id="avatarLS" class="rounded-circle z-depth-1-half avatar-pic" width="150px" height="150px"> -->
+                                                    <script>
+                                                        document.querySelector("#uploadAvatar").addEventListener("change", function () {
+                                                            //We pass the image into an url
+                                                            const reader = new FileReader();
+
+                                                            reader.addEventListener("load", () => {
+                                                                localStorage.setItem("avatar", reader.result);
+                                                            });
+                                                            //we pass the position where the image is
+                                                            reader.readAsDataURL(this.files[0]);
+                                                        });
+                                                        // Once DOM is loaded we set to src attribute our avatarurl
+                                                        document.addEventListener("DOMContentLoaded", () => {
+                                                            const avatarUrl = localStorage.getItem("avatar");
+
+                                                            if (avatarUrl) {
+                                                                document.querySelector("#avatarLS").setAttribute("src", avatarUrl);
+                                                            }
+                                                        })
+                                                    </script>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

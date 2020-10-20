@@ -43,8 +43,18 @@
             <div class="col-md-6">
                 <div class="file-field">
                     <div class="mb-4 text-md-center">
-                        <img src="placeholder-avatar.jpg"
-                            class="rounded-circle z-depth-1-half avatar-pic" alt="placeholder avatar">
+                        <img src="" id="avatarLS" class="rounded-circle z-depth-1-half avatar-pic" alt="placeholder avatar" 
+                    width="150px" height="150px">
+                    <script>
+                        // Once DOM is loaded we set to src attribute our avatarurl
+                        document.addEventListener("DOMContentLoaded", () => {
+                            const avatarUrl = localStorage.getItem("avatar");
+
+                            if (avatarUrl) {
+                                document.querySelector("#avatarLS").setAttribute("src", avatarUrl);
+                            }
+                        })
+                    </script>
                     </div>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="customFileLang" lang="es">
