@@ -38,6 +38,23 @@ the clicked option on the storage -->
             });
         });
     </script>
+
+    <!-- HTML Drag & Drop-->
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+    </script>
 </head>
 
 <body>
@@ -58,24 +75,27 @@ the clicked option on the storage -->
         <div class="col-4">
             <div class="mb-4 text-md-center col-md-6">
                 <br>
-                <img src="" id="avatarLS" class="rounded-circle z-depth-1-half avatar-pic" alt="placeholder avatar" 
-                    width="50px" height="50px">
-                    <script>
-                        // Once DOM is loaded we set to src attribute our avatarurl
-                        document.addEventListener("DOMContentLoaded", () => {
-                            const avatarUrl = localStorage.getItem("avatar");
+                <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="" id="avatarLS" class="rounded-circle z-depth-1-half avatar-pic" alt="placeholder avatar"
+                        width="50px" height="50px" draggable="true" ondragstart="drag(event)" id="drag1">
+                </div>
+                <script>
+                    // Once DOM is loaded we set to src attribute our avatarurl
+                    document.addEventListener("DOMContentLoaded", () => {
+                        const avatarUrl = localStorage.getItem("avatar");
 
-                            if (avatarUrl) {
-                                document.querySelector("#avatarLS").setAttribute("src", avatarUrl);
-                            }
-                        })
-                    </script>
+                        if (avatarUrl) {
+                            document.querySelector("#avatarLS").setAttribute("src", avatarUrl);
+                        }
+                    })
+                </script>
             </div>
             <div class="col-md-6 text-md-center">
                 <button type="button" class="btn btn-primary" onclick="">
                     New game
                 </button>
             </div>
+            <p id="dragInfo"></p>
         </div>
         <div class="col-8">
             <div class="mb-4 text-md-center col-md-6">
@@ -93,23 +113,21 @@ the clicked option on the storage -->
                     <tr>
                         <td>Game 1</td>
                         <td>2/4</td>
-                        <td><button type="button" class="btn btn-primary" onclick="">
-                                Join
-                            </button></td>
+                        <td id="td1" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+                        </td>
                     </tr>
                     <tr>
                         <td>Game 2</td>
                         <td>1/4</td>
-                        <td><button type="button" class="btn btn-primary" onclick="">
-                                Join
-                            </button></td>
+                        <td id="td2" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        </td>
                     </tr>
                     <tr>
                         <td>Game 3</td>
                         <td>3/4</td>
-                        <td><button type="button" class="btn btn-primary" onclick="">
-                                Join
-                            </button></td>
+                        <td id="td3" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        </td>
                     </tr>
                 </tbody>
             </table>
