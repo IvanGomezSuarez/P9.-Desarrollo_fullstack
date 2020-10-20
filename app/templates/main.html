@@ -112,21 +112,52 @@ the clicked option on the storage -->
                 <tbody>
                     <tr>
                         <td>Game 1</td>
-                        <td>2/4</td>
+                        <td id="players1">2</td>
                         <td id="td1" ondrop="drop(event)" ondragover="allowDrop(event)">
-
+                            <!-- This script is repeated each time we want to check the td id value
+                            We MUST find a way to loop through the table and get each prop from each row
+                        Probably we will be able to do so on product 3 when we retrieve the data from node
+                    This is just a temporary solution - Cristian 
+                -->
+                            <script>
+                                console.log(document.getElementById('players1').innerText);
+                                if (document.getElementById('players1').innerText == 4) {
+                                    let div = document.getElementById('td1');
+                                    div.style.background = "#C6C6C6";
+                                    document.getElementById('td1').innerText = "Full";
+                                    document.getElementById('td1').removeAttribute('ondrop');
+                                }
+                            </script>
                         </td>
                     </tr>
                     <tr>
                         <td>Game 2</td>
-                        <td>1/4</td>
+                        <td id="players2">1</td>
                         <td id="td2" ondrop="drop(event)" ondragover="allowDrop(event)">
                         </td>
+                        <script>
+                            console.log(document.getElementById('players2').innerText);
+                            if (document.getElementById('players2').innerText == 4) {
+                                let div = document.getElementById('td2');
+                                div.style.background = "#C6C6C6";
+                                document.getElementById('td2').innerText = "Full";
+                                document.getElementById('td2').removeAttribute('ondrop');
+                            }
+                        </script>
                     </tr>
                     <tr>
                         <td>Game 3</td>
-                        <td>3/4</td>
+                        <td id="players3">4</td>
                         <td id="td3" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <script>
+                                console.log(document.getElementById('players3').innerText);
+                                if (document.getElementById('players3').innerText == 4) {
+                                    let div = document.getElementById('td3');
+                                    document.getElementById('td3').innerText = "Full";
+                                    div.style.background = "#C6C6C6";
+                                    document.getElementById('td3').removeAttribute('ondrop');
+                                }
+                            </script>
                         </td>
                     </tr>
                 </tbody>
