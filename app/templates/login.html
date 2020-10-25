@@ -14,7 +14,7 @@
       <form id="login-form">
         <input type="text" id="username" class="fadeIn second" name="username" placeholder="username">
         <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-        <input type="button" class="fadeIn fourth" value="Log In" onclick="check()">
+        <input type="button" class="fadeIn fourth" value="Log In" onclick="login()">
       </form>
 
       <div id="formFooter">
@@ -32,8 +32,8 @@
   </div>
 
   <script>
-    // check if stored data from register-form is equal to entered data in the   login-form
-    function check() {
+    // login if stored data from register-form is equal to entered data in the   login-form
+    function login() {
   
       // stored data from the register-form
       let storedName = localStorage.getItem('username');
@@ -42,7 +42,7 @@
       // entered data from the login-form
       let userName = document.getElementById('username');
       let userPw = document.getElementById('password');
-      // check if stored data from register-form is equal to data from login form
+      // login if stored data from register-form is equal to data from login form
       if (userName.value == storedName && userPw.value == storedPw) {
         location.replace("main.html");
       } else {
