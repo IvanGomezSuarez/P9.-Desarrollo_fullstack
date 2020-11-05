@@ -168,18 +168,19 @@
 
         function store() {
             const dataArray = [fullname.value, username.value, email.value, password.value];
-            console.log(dataArray)
+            //console.log('dataArray: ', dataArray)
             localStorage.setItem('userData', JSON.stringify(dataArray))
+            //console.log('userData: ', userData);
 
-            let obtenerUserData = localStorage.getElementById('userData');
-            let userInfo = JSON.parse(obtenerUserData);
-            console.log('userInfo: ', userInfo)
+            //let obtenerUserData = localStorage.getItem('userData');
+            //let userInfo = JSON.parse(obtenerUserData);
+            //console.log('userInfo: ', userInfo)
 
 
-            localStorage.setItem('fullname', fullname.value);
-            localStorage.setItem('username', username.value);
-            localStorage.setItem('email', email.value);
-            localStorage.setItem('password', password.value);
+            //localStorage.setItem('fullname', fullname.value);
+            //localStorage.setItem('username', username.value);
+            //localStorage.setItem('email', email.value);
+            //localStorage.setItem('password', password.value);
             window.location.assign("login.html");
         }
     </script>
