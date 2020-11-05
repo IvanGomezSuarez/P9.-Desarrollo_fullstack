@@ -117,7 +117,8 @@
                                 </div>
                                 <!-- The submission button MUST BE a button type, otherwise, it will not allow a script to ser the location assign -->
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="button" class="btn btn-primary" id="rgstr_btn" onClick="store(), validform()">
+                                    <button type="button" class="btn btn-primary" id="rgstr_btn"
+                                        onClick="store(), validform()">
                                         Register
                                     </button>
                                 </div>
@@ -163,7 +164,18 @@
         let email = document.getElementById('email');
         let password = document.getElementById('password');
 
+
+
         function store() {
+            const dataArray = [fullname.value, username.value, email.value, password.value];
+            console.log(dataArray)
+            localStorage.setItem('userData', JSON.stringify(dataArray))
+
+            let obtenerUserData = localStorage.getElementById('userData');
+            let userInfo = JSON.parse(obtenerUserData);
+            console.log('userInfo: ', userInfo)
+
+
             localStorage.setItem('fullname', fullname.value);
             localStorage.setItem('username', username.value);
             localStorage.setItem('email', email.value);
