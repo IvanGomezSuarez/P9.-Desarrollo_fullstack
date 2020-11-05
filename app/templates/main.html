@@ -44,20 +44,12 @@
 
             /* Get all the rows with class game and check if the room is full, and 
             disabling D&D and marking it full */
-<<<<<<< HEAD
-            $(".game").each(function(){
-=======
             $(".game").each(function () {
->>>>>>> 710730322742862fd07e417f6e0894873d381940
                 if (this.cells[1].innerText == 4) {
                     $(this).addClass("table-active");
                     this.cells[2].innerText = "Full";
                     $(this).removeAttr('ondrop ondragover ondragleave');
-<<<<<<< HEAD
-            }
-=======
                 }
->>>>>>> 710730322742862fd07e417f6e0894873d381940
             });
         });
     </script>
