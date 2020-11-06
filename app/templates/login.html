@@ -33,7 +33,7 @@
 
   <script>
     let obtenerUserData = localStorage.getItem('userData');
-    let userInfo = JSON.parse(obtenerUserData);
+    var userInfo = JSON.parse(obtenerUserData);
     console.log(userInfo[3]);
     // login if stored data from register-form is equal to entered data in the   login-form
     function login() {
@@ -41,14 +41,14 @@
       
   
       // stored data from the register-form
-      //let storedName = userInfo[1];
-      //let storedPw = userInfo[3];
+      let storedName = userInfo[1];
+      let storedPw = userInfo[3];
   
       // entered data from the login-form
       let userName = document.getElementById('username');
       let userPw = document.getElementById('password');
       // login if stored data from register-form is equal to data from login form
-      if (userName.value == userInfo[1] && userPw.value == userInfo[3]) {
+      if (userName.value == storedName && userPw.value == storedPw) {
         location.replace("main.html");
       } else {
         alert('Something went wrong...');
