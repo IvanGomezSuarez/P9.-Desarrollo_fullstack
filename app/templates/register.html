@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+        id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <title>Register</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <main class="my-form">
+        <div class="cotainer">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">Register</div>
+                        <div class="card-body">
+                            <form name="my-form" action="" method="">
+                                <div class="form-group row">
+                                    <label for="full_name" class="col-md-4 col-form-label text-md-right"></label>
+                                    <div class="col-md-6">
+                                        <div class="file-field">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="uploadAvatar"
+                                                    lang="en">
+                                                <label class="custom-file-label" for="uploadAvatar">Upload
+                                                    avatar</label>
+                                            </div>
+                                            <label style="font-style:italic">Image must be jpeg</label>
+                                            <div class="mb-4 text-md-center">
+                                                <div>
+                                                    <!-- <img src="" id="avatarLS" class="rounded-circle z-depth-1-half avatar-pic" width="150px" height="150px"> -->
+                                                    <script>
+                                                        document.querySelector("#uploadAvatar").addEventListener("change", function () {
+                                                            //We pass the image into an url
+                                                            const reader = new FileReader();
+
+                                                            reader.addEventListener("load", () => {
+                                                                localStorage.setItem("avatar", reader.result);
+                                                            });
+                                                            //we pass the position where the image is
+                                                            reader.readAsDataURL(this.files[0]);
+                                                        });
+                                                        // Once DOM is loaded we set to src attribute our avatarurl
+                                                        document.addEventListener("DOMContentLoaded", () => {
+                                                            const avatarUrl = localStorage.getItem("avatar");
+
+                                                            if (avatarUrl) {
+                                                                document.querySelector("#avatarLS").setAttribute("src", avatarUrl);
+                                                            }
+                                                        })
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="full_name" class="col-md-4 col-form-label text-md-right">Full
+                                        Name</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="fullname" class="form-control" name="fullname">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="user_name" class="col-md-4 col-form-label text-md-right">User
+                                        Name</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="username" class="form-control" name="username">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail
+                                        Address</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="email" class="form-control" name="email">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                                    <div class="col-md-6">
+                                        <input type="password" id="password" class="form-control">
+                                    </div>
+                                </div>
+                                <!-- The submission button MUST BE a button type, otherwise, it will not allow a script to ser the location assign -->
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="button" class="btn btn-primary" id="rgstr_btn"
+                                        onClick="store(), validform()">
+                                        Register
+                                    </button>
+                                </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </main>
+
+    <script>
+        //Validate that all values have been introduced
+        function validform() {
+
+            let a = document.forms["my-form"]["fullname"].value;
+            let b = document.forms["my-form"]["username"].value;
+            let c = document.forms["my-form"]["email"].value;
+            let d = document.forms["my-form"]["password"].value;
+
+            if (a == null || a == "") {
+                alert("Please Enter Your Full Name");
+                return false;
+            } else if (b == null || b == "") {
+                alert("Please Enter Your username");
+                return false;
+            } else if (c == null || c == "") {
+                alert("Please Enter Your Email Address");
+                return false;
+            } else if (d == null || d == "") {
+                alert("Please Enter Your password");
+                return false;
+            }
+        }
+
+        //Register function
+
+        // Name and Password from the register-form
+        let fullname = document.getElementById('fullname');
+        let username = document.getElementById('username');
+        let email = document.getElementById('email');
+        let password = document.getElementById('password');
+
+
+
+        function store() {
+            const dataArray = [fullname.value, username.value, email.value, password.value];
+            //console.log('dataArray: ', dataArray)
+            localStorage.setItem('userData', JSON.stringify(dataArray))
+            //console.log('userData: ', userData);
+
+            let obtenerUserData = localStorage.getItem('userData');
+            let userInfo = JSON.parse(obtenerUserData);
+            window.location.assign("login.html");
+        }
+    </script>
+</body>
+
+</html>
+
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+
+    body {
+        margin: 0;
+        font-size: .9rem;
+        font-weight: 400;
+        line-height: 1.6;
+        color: #212529;
+        text-align: left;
+        background-color: #f5f8fa;
+    }
+
+    .navbar-laravel {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
+    }
+
+    .navbar-brand,
+    .nav-link,
+    .my-form,
+    .login-form {
+        font-family: Raleway, sans-serif;
+    }
+
+    .my-form {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .my-form .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .login-form {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .login-form .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* Avatar styles */
+
+    .avatar-pic {
+        width: 150px;
+    }
+</style>
