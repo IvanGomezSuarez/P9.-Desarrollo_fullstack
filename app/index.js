@@ -1,8 +1,23 @@
+const logic = require ('./modules/GameLogic');
+const constructor = require('./modules/Constructors');
+
+const url = require('url');
+
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
 let arrancaServer = (puerto) => {
     http.createServer((request, response)=> {
+        
+        let URLpath = request.url;
+        console.log(URLpath);
+
+        //Enrutado partida
+        if(URLpath==='/partida'){
+            // response.end('LA NUEVA PARTIDA');
+            logic.winLogic();
+            constructor.players();
+        }
         let filePath = request.url;
         let encoding = 'UTF-8';
         if (filePath == '/') {
