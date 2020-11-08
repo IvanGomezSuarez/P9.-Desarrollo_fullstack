@@ -21,15 +21,21 @@
     </script>
 
     <script>
-        var USERNAME = localStorage.getItem("username");
-        var EMAIL = localStorage.getItem("email");
+        let obtenerUserData = localStorage.getItem('userData');
+        if (!obtenerUserData) {
+            location.assign("login.html");
+        } else {
+            let userInfo = JSON.parse(obtenerUserData);
+            var USERNAME = userInfo[1];
+            var EMAIL = userInfo[3];
+        }
 
         function logout() {
             localStorage.clear();
             location.assign("login.html");
         }
 
-        function back(){
+        function back() {
             window.history.back();
         }
     </script>
@@ -43,18 +49,18 @@
             <div class="col-md-6">
                 <div class="file-field">
                     <div class="mb-4 text-md-center">
-                        <img src="" id="avatarLS" class="rounded-circle z-depth-1-half avatar-pic" alt="placeholder avatar" 
-                    width="150px" height="150px">
-                    <script>
-                        // Once DOM is loaded we set to src attribute our avatarurl
-                        document.addEventListener("DOMContentLoaded", () => {
-                            const avatarUrl = localStorage.getItem("avatar");
+                        <img src="" id="avatarLS" class="rounded-circle z-depth-1-half avatar-pic"
+                            alt="placeholder avatar" width="150px" height="150px">
+                        <script>
+                            // Once DOM is loaded we set to src attribute our avatarurl
+                            document.addEventListener("DOMContentLoaded", () => {
+                                const avatarUrl = localStorage.getItem("avatar");
 
-                            if (avatarUrl) {
-                                document.querySelector("#avatarLS").setAttribute("src", avatarUrl);
-                            }
-                        })
-                    </script>
+                                if (avatarUrl) {
+                                    document.querySelector("#avatarLS").setAttribute("src", avatarUrl);
+                                }
+                            })
+                        </script>
                     </div>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="customFileLang" lang="es">
