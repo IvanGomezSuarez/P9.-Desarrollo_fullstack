@@ -6,9 +6,4 @@ class Jugador {
         this.password = password;
         this.avatar = avatar;
     }
-
-    /*
-    NO TENEMOS CLARO SI LOS MÉTODOS DE REGISTRO Y AUTENTICACIÓN
-    TENDRÍAN QUE IR AQUÍ O EN OTRA CLASE 
-    */
 }
