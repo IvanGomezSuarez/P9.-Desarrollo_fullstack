@@ -27,6 +27,10 @@
             location.assign("login.html");
         }
 
+        function back() {
+            window.history.back();
+        }
+
     </script>
     <title>Partida</title>
     <!-- Load navbar html with jquery -->
@@ -189,6 +193,9 @@
                     </tr>
                 </table>
             </div>
+            <button type="button" class="btn btn-primary" onclick="back()">
+                Go back
+            </button>
         </div>
     </div>
 
