@@ -1,8 +1,0 @@
-1. ¿Qué módulos deberíamos crear y cómo?
-1.1 Propuesta de módulos (register & localstorage & drag&drop) <- ¿está bien?
-2. ¿Qué más debe implementar las clases jugador y partida?
-3. ¿Cómo deberíamos implementar los métodos de registro y autenticación del apartado de POO?
-4. Datos de jugadores y salas de juego implementados en estructuras de datos dinámicos
-en el lado del servidor. <-- ¿QUÉ TENEMOS QUE HACER?
-5. Efecto de acertar de ganar un movimiento y poner las fichas. Se utiliza encaminamiento
-¿Qué hay que hacer con esto? ¿tenemos que crear el tablero y todas sus funcionalidades?
