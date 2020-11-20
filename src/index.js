@@ -22,9 +22,3 @@ app.use(express.static(path.join(__dirname, 'public')));
 server.listen(app.get('port')), () =>{
     console.log('server running on port 3000');
 }
-
-/* 
-Sala, partida, usuarios, id
-Partida: idPartida, arrayPosiciones
-
-*/
