@@ -133,3 +133,9 @@
   input[type=text]:placeholder {
     color: #cccccc;
   }
+
+  .panel{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
