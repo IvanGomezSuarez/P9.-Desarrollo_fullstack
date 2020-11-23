@@ -44,24 +44,35 @@
 
 <body>
     <div id="navbar"></div>
-    <div class="panel"> <canvas id="canvas" width="1000" height="1000"></canvas></div>
-    <div class="row h-100">
-        <div class="col-sm-12 my-5">
-            <div class="w-25 mx-auto">
-               
-            </div>
-            <button type="button" class="btn btn-primary" onclick="back()">
-                Go back
-            </button>
-        </div>
+    <div class="center topSpace">
+        <canvas id="canvas" width="600" height="600"></canvas>
     </div>
+    <div class="row h-100">
+            <div class="center topSpace">
+                <button type="button" class="btn btn-primary" onclick="back()">
+                    Go back
+                </button>
+            </div>         
+        </div>
 
 </body>
 
 <style>
-
     canvas {
-  border: 1px solid black;
+    padding: 0;
+    margin: auto;
+    display: block;
+    border: 1px solid black;
+}
+
+.center{
+    padding: 0;
+    margin: auto;
+    display: block;
+}
+
+.topSpace{
+    padding-top:20px;
 }
 </style>
 
