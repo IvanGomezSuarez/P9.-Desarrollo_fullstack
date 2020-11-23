@@ -10,25 +10,25 @@
         var c=20;
        
         for(i=1;i<5;i++){
-          lienzo.fillRect(20,c,100,100);
-          lienzo.clearRect(120,c,100,100);
-          lienzo.fillRect(220,c,100,100);
-          lienzo.clearRect(320,c,100,100);
-          lienzo.fillRect(420,c,100,100);
-          lienzo.clearRect(520,c,100,100);
-          lienzo.fillRect(620,c,100,100);
-          lienzo.clearRect(720,c,100,100);
+          lienzo.strokeRect(20,c,100,100);
+          lienzo.strokeRect(120,c,100,100);
+          lienzo.strokeRect(220,c,100,100);
+          lienzo.strokeRect(320,c,100,100);
+          lienzo.strokeRect(420,c,100,100);
+          lienzo.strokeRect(520,c,100,100);
+          lienzo.strokeRect(620,c,100,100);
+          lienzo.strokeRect(720,c,100,100);
           
           c=c+100;
           
-          lienzo.clearRect(20,c,100,100);
-          lienzo.fillRect(120,c,100,100);
-          lienzo.clearRect(220,c,100,100);  
-          lienzo.fillRect(320,c,100,100);
-          lienzo.clearRect(420,c,100,100);  
-          lienzo.fillRect(520,c,100,100);
-          lienzo.clearRect(620,c,100,100);  
-          lienzo.fillRect(720,c,100,100);
+          lienzo.strokeRect(20,c,100,100);
+          lienzo.strokeRect(120,c,100,100);
+          lienzo.strokeRect(220,c,100,100);  
+          lienzo.strokeRect(320,c,100,100);
+          lienzo.strokeRect(420,c,100,100);  
+          lienzo.strokeRect(520,c,100,100);
+          lienzo.strokeRect(620,c,100,100);  
+          lienzo.strokeRect(720,c,100,100);
           
           c=c+100;
         }
