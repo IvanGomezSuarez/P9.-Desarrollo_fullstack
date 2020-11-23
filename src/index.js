@@ -9,8 +9,18 @@ const server = http.createServer(app);
 const io = socketIO(server);
 
 //sockets
-//require('./sockets')(io);
 
+  io.on('connection', socket => {
+      console.log('new User connected');
+
+      Socket.on('draw_line', data => {
+          console.log(data);
+       })
+    });
+  
+  
+  
+  
 //settings
 app.set('port', process.env.PORT || 3000); //si hay puerto establecido lo usa y si no por defecto será el 3000
 
