@@ -1,0 +1,13 @@
+{
+    "Players": [
+        {
+            "id": null,
+            "avatar": "",
+            "fullname": "",
+            "email": "",
+            "password": "",
+            "username": "",
+            "score": null
+        }
+    ]
+}
