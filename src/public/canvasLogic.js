@@ -148,14 +148,6 @@ function iniciar(){
     this.y = y;
     this.width = width;
     this.height = height;
-    // this.workWidth = {
-    //   start: x,
-    //   end: x + width
-    // }
-    // this.workHeight = {
-    //   start: y,
-    //   end: y + height
-    // }
     this.fillColor = fillColor;
     this.strokeStyle = 'black';
   }
@@ -175,7 +167,6 @@ function iniciar(){
     for (var i = 0; i < quantityAll; i++) {
       var fillColor = 'white';
       var tile = new Tile(drawPosition.x, drawPosition.y, tileWidth, tileHeight, i, fillColor);
-      console.log(tile);
       elements.push(tile);
 
       drawPosition.x = drawPosition.x + tileWidth;
@@ -205,25 +196,25 @@ function iniciar(){
 //   left: 170
 // });
 
-// Render elements.
+
 
 // Add event listener for `click` events.
 elem.addEventListener('click', function(event) {
-  var x = event.pageX - elemLeft,
-      y = event.pageY - elemTop;
+  var y = event.pageX - elemLeft,
+      x = event.pageY - elemTop;
   //console.log(x, y);
   
 elements.forEach(function(element) {
       if (y > element.x && y < element.x + element.height && x > element.y && x < element.y + element.width) {
-          //alert('clicked an element');
-          //console.log(event.button);
-          //console.log("CLUCK!!!");
-          console.log(element.id);
+          var id = element.id;
+          console.log(`La casilla es la número: ${id}`);
       }
   });
 
 }, false);
 
+
+// Render elements.
 function drawTiles() {
 elements.forEach(function(element) {
   context.beginPath();
@@ -238,19 +229,6 @@ elements.forEach(function(element) {
 }
 drawTiles();
 }
-
-//       context.beginPath()
-
-//       context.fillStyle = tile.fillColor;
-//       context.rect(tile.x, tile.y, tile.width, tile.height);
-
-//       context.lineWidth = "2";
-//       context.strokeStyle = tile.strokeStyle;
-//       context.stroke()
-
-//       context.fill();
-
-
 
 window.addEventListener("load", iniciar, false);
 
