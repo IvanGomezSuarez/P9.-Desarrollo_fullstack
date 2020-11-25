@@ -5,13 +5,13 @@ function iniciar(){
   elemTop = elem.offsetTop,
   context = elem.getContext('2d'),
   elements = [];
-  var prueba = elem.removeEventListener('click', pulsaCelda,false);
+  //var prueba = elem.removeEventListener('click', pulsaCelda,false);
 
-  if(prueba){
-    console.log("se queta el evento");
-  }else{
-    console.log("no se ha podido quitar");
-  }
+  // if(prueba){
+  //   console.log("se queta el evento");
+  // }else{
+  //   console.log("no se ha podido quitar");
+  // }
 
   function Tile(x, y, width, height, id, fillColor, strokeStyle) {
     this.id = id;
