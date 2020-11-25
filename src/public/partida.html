@@ -39,6 +39,8 @@
         $(document).ready(function () {
             $('#navbar').load("navbar.html");
         });
+        //pintamos de nuevo el tablero si redimensionamos la ventana para no perder las coordenadas
+        window.onresize = iniciar;
     </script>
 </head>
 
