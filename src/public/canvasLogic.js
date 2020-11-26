@@ -1,6 +1,7 @@
 //canvas
 function iniciar() {
 
+  const socket = io({ 'forceNew': true });
 
 
   var canvas_element = document.getElementById('canvas');
@@ -35,7 +36,9 @@ function iniciar() {
     console.log(`You click element with number ${elementClickedId}`);
     tiles_array[elementClickedId].fillColor = 'blue';
     drawTiles();
+    //socket.emit('turn', canvas_element(elementClickedId));
   }
+
 
   canvas_element.onmousemove = function (e) {
     var elementUnder = checkClick(event);
