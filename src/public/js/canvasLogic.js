@@ -69,12 +69,13 @@ function iniciar(){
 
 function pulsaCelda(event){
   //elem.removeEventListener('click');
-  var y = event.pageX - elemLeft,
+  let y = event.pageX - elemLeft,
       x = event.pageY - elemTop;
   //console.log(x, y);  
   elements.forEach(function(element) {
       if (y > element.x && y < element.x + element.height && x > element.y && x < element.y + element.width) {
-          var id = element.id;
+          let id = 1;
+          id = element.id;
           console.log(`La casilla es la número: ${id}`);
       }
   });
