@@ -36,9 +36,15 @@ io.on('connection', (sock) => {
 //settings
 app.set('port', process.env.PORT || 3000); //si hay puerto establecido lo usa y si no por defecto será el 3000
 
+//Set engine to pug
+app.set('view engine', 'pug');
+
 //static files
 app.use(express.static(path.join(__dirname, 'public')));
-//middlewares 
+
+app.get('/info', function (req, res) {
+  res.render('info', { title: 'Sobre nosotros', message: 'Quienes somos', content: 'Proyecto creado con mucho esfuerzo por Ivan, Moisés, Marcos y Cristian', tech: 'Tecnología usada: Express, Js, Pug, Mongoose'});
+});
 
 // starting the server
 server.listen(app.get('port')), () =>{
