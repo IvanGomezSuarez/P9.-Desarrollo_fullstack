@@ -1,4 +1,9 @@
 const express = require('express');
+const bodyParser = require("body-parser");
+const InitiateMongoServer = require("./config/db");
+//Importamos el modelo de user
+const user = require("./routes/user");
+
 const path = require('path');
 const socketIO = require('socket.io');
 const http = require('http');
@@ -9,6 +14,18 @@ const createCooldown = require('./create-cooldown');
 //initialiaation 
 const app = express();
 const server = http.createServer(app);
+
+// Initiate Mongo Server
+InitiateMongoServer();
+
+// Middleware
+app.use(bodyParser.json());
+
+//Router user
+app.use("/user", user);
+
+
+
 const io = socketIO(server);
 const { clear, getBoard, makeTurn } = createBoard(8);
 
