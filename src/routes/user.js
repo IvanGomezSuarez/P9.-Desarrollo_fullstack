@@ -3,7 +3,7 @@ const { check, validationResult} = require("express-validator/check");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
-
+const auth = require("./../middleware/auth");
 const User = require("../model/User");
 
 /**
@@ -143,4 +143,17 @@ router.post(
     }
   );
 
+  //Get Logged User
+  //Obtenemos el usuario usando el token generado. Lo pasamos en la cabecera
+  //Hemos añadido el parámetro auth en la ruta --> creamos la función en middleware/auth.js
+
+  router.get("/me", auth, async (req, res) => {
+    try {
+      // request.user is getting fetched from Middleware after token authentication
+      const user = await User.findById(req.user.id);
+      res.json(user);
+    } catch (e) {
+      res.send({ message: "Error al recuperar el usuario" });
+    }
+  });
 module.exports = router;
