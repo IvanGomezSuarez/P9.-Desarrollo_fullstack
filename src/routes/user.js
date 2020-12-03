@@ -92,6 +92,8 @@ router.post(
       })
     ],
     async (req, res) => {
+      //Intentando definir la cabecera sin éxito
+      res.type('application/json');
       const errors = validationResult(req);
   
       if (!errors.isEmpty()) {
@@ -135,6 +137,7 @@ router.post(
             });
           }
         );
+        console.log("ESTAMOS DENTRO")
       } catch (e) {
         console.error(e);
         res.status(500).json({
