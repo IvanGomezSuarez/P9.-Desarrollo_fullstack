@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("./../middleware/auth");
 const User = require("../model/User");
-
+const axios = require("axios");
 /**
  * @method - POST
  * @param - /signup
@@ -81,6 +81,7 @@ router.post(
         }
     }
 );
+
 
 router.post(
     "/login",
