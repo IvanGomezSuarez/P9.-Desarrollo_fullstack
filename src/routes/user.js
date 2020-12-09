@@ -135,6 +135,8 @@ router.post(
             res.status(200).json({
               token
             });
+            console.log(token);
+            console.log(user);
           }
         );
         console.log("ESTAMOS DENTRO")
