@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
-// Replace this with your MONGOURI.
-const MONGOURI = "mongodb+srv://admin:Esteloaprobamos1@cluster0.a7bkr.mongodb.net/p9ddbb?retryWrites=true&w=majority";
+const mongoose = require("mongoose");
+const path = require('path')
 
 const InitiateMongoServer = async () => {
   try {
-    await mongoose.connect(MONGOURI, {
+    await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true

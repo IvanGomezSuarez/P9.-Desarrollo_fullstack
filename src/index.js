@@ -24,8 +24,6 @@ app.use(bodyParser.json());
 //Router user
 app.use("/user", user);
 
-
-
 const io = socketIO(server);
 const { clear, getBoard, makeTurn } = createBoard(8);
 
