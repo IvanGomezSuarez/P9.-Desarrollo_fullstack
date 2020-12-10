@@ -14,6 +14,7 @@
         id="bootstrap-css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <title>Register</title>
 </head>
@@ -45,7 +46,6 @@
                     <div class="card">
                         <div class="card-header">Register</div>
                         <div class="card-body">
-                            <form name="my-form" action="" method="">
                                 <div class="form-group row">
                                     <label for="full_name" class="col-md-4 col-form-label text-md-right"></label>
                                     <div class="col-md-6">
@@ -112,18 +112,17 @@
                                 <div class="form-group row">
                                     <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                                     <div class="col-md-6">
-                                        <input type="password" id="password" class="form-control">
+                                        <input type="password" id="password" name="password" class="form-control">
                                     </div>
                                 </div>
                                 <!-- The submission button MUST BE a button type, otherwise, it will not allow a script to ser the location assign -->
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="button" class="btn btn-primary" id="rgstr_btn"
-                                        onClick="store(), validform()">
+                                    <button type="submit" class="btn btn-primary" id="rgstr_btn"
+                                        onClick="register()" value="Submit">
                                         Register
                                     </button>
                                 </div>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -158,24 +157,35 @@
 
         //Register function
 
-        // Name and Password from the register-form
-        let fullname = document.getElementById('fullname');
-        let username = document.getElementById('username');
-        let email = document.getElementById('email');
-        let password = document.getElementById('password');
+        function register() {
+      let email = document.getElementById('email').value;
+      let username = document.getElementById('username').value;
+      let password = document.getElementById('password').value;
+      const userData = {
+        email: email,
+        username: username,
+        password: password
+      }
 
-
-
-        function store() {
-            const dataArray = [fullname.value, username.value, email.value, password.value];
-            //console.log('dataArray: ', dataArray)
-            localStorage.setItem('userData', JSON.stringify(dataArray))
-            //console.log('userData: ', userData);
-
-            let obtenerUserData = localStorage.getItem('userData');
-            let userInfo = JSON.parse(obtenerUserData);
-            window.location.assign("login.html");
+      let axiosConfig = {
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          "Access-Control-Allow-Origin": "*",
         }
+      };
+      axios
+        .post('http://localhost:3000' + '/user/signup', userData, axiosConfig)
+        .then(response => {
+          console.log(response.data.user.email)
+          console.log(response.data.user.username)
+        })
+
+        let usernameLS = localStorage.getItem("username");
+        let emailLS = localStorage.getItem("email");
+
+        location.replace("login.html")
+    }
+    
     </script>
 </body>
 
