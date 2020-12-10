@@ -19,9 +19,9 @@ router.post(
         .not()
         .isEmpty(),
         check("email", "Por favor, entra un email válido").isEmail(),
-        check("password", "Por favor, entra una contraseña válida de más de 3 dígitos").isLength({
-            min: 3
-        })
+        // check("password", "Por favor, entra una contraseña válida de más de 3 dígitos").isLength({
+        //     min: 3
+        // })
     ],
     async (req, res) => {
         const errors = validationResult(req);
@@ -53,6 +53,7 @@ router.post(
             });
 
             const salt = await bcrypt.genSalt(10);
+            console.info(password)
             user.password = await bcrypt.hash(password, salt);
 
             await user.save();
