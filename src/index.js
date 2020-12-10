@@ -19,12 +19,11 @@ const server = http.createServer(app);
 InitiateMongoServer();
 
 // Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //Router user
 app.use("/user", user);
-
-
 
 const io = socketIO(server);
 const { clear, getBoard, makeTurn } = createBoard(8);
@@ -64,6 +63,6 @@ app.get('/info', function (req, res) {
 });
 
 // starting the server
-server.listen(app.get('port')), () =>{
+server.listen(app.get('port'), () =>{
     console.log('server running on port 3000');
-}
+})
