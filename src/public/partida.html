@@ -14,12 +14,14 @@
     <script src="https://use.fontawesome.com/fbf676476f.js"></script>
     <script>
 
-        let obtenerUserData = localStorage.getItem('userData');
-        if (!obtenerUserData) {
+        let getToken = localStorage.getItem('token');
+        if (!getToken) {
             location.assign("login.html");
         } else {
-            let userInfo = JSON.parse(obtenerUserData);
-            var USERNAME = userInfo[1];
+            let usernameLS = localStorage.getItem("username");
+            let emailLS = localStorage.getItem("email");
+            let tokenLS = localStorage.getItem("token");
+            var USERNAME = usernameLS;
         }
 
         function logout() {
@@ -47,7 +49,7 @@
         <div class="col-sm-12 my-5">
             <div class="controls-wrapper">
                 <ul id="events"></ul>
-              </div>
+            </div>
             <div class="w-25 mx-auto">
                 <canvas width="600" height="600">
             </div>

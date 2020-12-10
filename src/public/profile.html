@@ -21,13 +21,15 @@
     </script>
 
     <script>
-        let obtenerUserData = localStorage.getItem('userData');
-        if (!obtenerUserData) {
+        let getToken = localStorage.getItem('token');
+        if (!getToken) {
             location.assign("login.html");
         } else {
-            let userInfo = JSON.parse(obtenerUserData);
-            var USERNAME = userInfo[1];
-            var EMAIL = userInfo[3];
+            let usernameLS = localStorage.getItem("username");
+            let emailLS = localStorage.getItem("email");
+            let tokenLS = localStorage.getItem("token");
+            var USERNAME = usernameLS;
+            var EMAIL = emailLS;
         }
 
         function logout() {

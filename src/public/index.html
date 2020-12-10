@@ -11,19 +11,23 @@
     <script src="https://use.fontawesome.com/fbf676476f.js"></script>
     <script>
 
-        let obtenerUserData = localStorage.getItem('userData');
-        if (!obtenerUserData) {
+        let getToken = localStorage.getItem('token');
+        if (!getToken) {
             location.assign("login.html");
         } else {
-            let userInfo = JSON.parse(obtenerUserData);
-            var USERNAME = userInfo[1];
+            let usernameLS = localStorage.getItem("username");
+            let emailLS = localStorage.getItem("email");
+            let tokenLS = localStorage.getItem("token");
+            var USERNAME = usernameLS;
         }
-
-
 
         function logout() {
             localStorage.clear();
             location.assign("login.html");
+        }
+
+        function back() {
+            window.history.back();
         }
 
     </script>

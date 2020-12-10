@@ -88,9 +88,9 @@ router.post(
     "/login",
     [
       check("email", "Por favor, entra un email válido").isEmail(),
-      check("password", "Por favor, entra un password válido").isLength({
-        min: 3
-      })
+      // check("password", "Por favor, entra un password válido").isLength({
+      //   min: 3
+      // })
     ],
     async (req, res) => {
       //Intentando definir la cabecera sin éxito
@@ -134,7 +134,8 @@ router.post(
           (err, token) => {
             if (err) throw err;
             res.status(200).json({
-              token
+              token,
+              user
             });
             console.log(token);
             console.log(user);
