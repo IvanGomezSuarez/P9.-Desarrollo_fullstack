@@ -5,18 +5,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script></head>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
 
 <body>
   <div class="wrapper fadeInDown">
     <div id="formContent">
 
       <!-- Login Form -->
-      <form>
-        <input type="text" id="email" class="fadeIn second" name="email" placeholder="email">
-        <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-        <input type="submit" class="fadeIn fourth" value="Log In" onclick="login()">
-      </form>
+
+      <input type="text" id="email" class="fadeIn second" name="email" placeholder="email">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In" onclick="login()">
 
       <div id="formFooter">
         <div class="row">
@@ -77,11 +77,25 @@
       axios
         .post('http://localhost:3000' + '/user/login', userData, axiosConfig)
         .then(response => {
-          console.log(response.json())
-          console.log(response.data)
-          console.log(response)
+          console.log(response.data.token)
+          console.log(response.data.user.email)
+          console.log(response.data.user.username)
+
+          let storedName = response.data.user.username;
+          localStorage.setItem("username", storedName);
+          let storedEmail = response.data.user.email;
+          localStorage.setItem("email", storedEmail);
+          let storedToken = response.data.token;
+          localStorage.setItem("token", storedToken);
         })
 
+        let usernameLS = localStorage.getItem("username");
+        let emailLS = localStorage.getItem("email");
+        let tokenLS = localStorage.getItem("token");
+
+        if(tokenLS){
+            location.replace("index.html")
+          }
     }
   </script>
 </body>
