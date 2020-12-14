@@ -33,6 +33,17 @@
             window.history.back();
         }
 
+        //If li->ul->events equals 2 it means it's the winner. We call it every second to check if there is a winner
+        var checkExist = setInterval(function () {
+            if ($('#events').length) {
+                var n = $("li").length;
+                if (n === 2) {
+                    console.log("Ganador " + USERNAME)
+                    clearInterval(checkExist);
+                }
+
+            }
+        }, 2000); // check every 1000ms
     </script>
     <title>Partida</title>
     <!-- Load navbar html with jquery -->
