@@ -1,8 +1,9 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const InitiateMongoServer = require("./config/db");
-//Importamos el modelo de user
+//Importamos el modelo de user y score
 const user = require("./routes/user");
+const score = require("./routes/score");
 
 const path = require('path');
 const socketIO = require('socket.io');
@@ -22,8 +23,9 @@ InitiateMongoServer();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//Router user
+//Router user & score
 app.use("/user", user);
+app.use("/score", score);
 
 const io = socketIO(server);
 const { clear, getBoard, makeTurn } = createBoard(8);
