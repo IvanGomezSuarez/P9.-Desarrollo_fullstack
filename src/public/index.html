@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/fbf676476f.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
 
         let getToken = localStorage.getItem('token');
@@ -29,6 +30,25 @@
         function back() {
             window.history.back();
         }
+
+        axios
+            .get('http://localhost:3000' + '/score/getScore')
+            .then(response => {
+                var totalScores = response.data;
+
+                var myScores = totalScores.filter(element =>
+                    (element.username === USERNAME))
+                myScores.forEach(element => {
+                    console.log(element)
+
+                    const parent = document.querySelector('#scores');
+                    const el = document.createElement('li');
+                    el.innerHTML = element.score;
+
+                    parent.appendChild(el);
+                    parent.scrollTop = parent.scrollHeight;
+                });
+            })
 
     </script>
 
@@ -87,7 +107,8 @@
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <a style="color: white"><span></span>Hello
-            <script type="text/javascript">document.write(USERNAME)</script></a>
+            <script type="text/javascript">document.write(USERNAME)</script>
+        </a>
         <div class="dropdown">
             <a style="color: white" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> My profile</a>
             <div class="dropdown-menu text-center">
@@ -122,6 +143,10 @@
                     <a href="/partida.html" style="color:white;">New game</a>
                 </button>
                 <p><a href="/info" target="_blank">Información del proyecto</a></p>
+            </div>
+            <div class="col-md-6 text-md-center pt-2 cardDescription">
+                <h2>Mis resultados</h2>
+                <ul id="scores"></ul>
             </div>
             <p id="dragInfo"></p>
         </div>
@@ -243,5 +268,40 @@
     input[type=radio].with-font:focus~label:before,
     input[type=radio].with-font:focus~label {
         color: green;
+    }
+
+    .cardDescription {
+        margin-top: 20px;
+        margin-left: 10px;
+        background-color: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 0.2rem 0.5rem #aaa;
+        overflow: hidden;
+        width: 75%;
+    }
+
+    .cardDescription:hover {
+        background-color: #F9F9F9;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        padding-left: 1.3em;
+    }
+
+    li:before {
+        content: "\f091";
+        /* FontAwesome Unicode */
+        font-family: FontAwesome;
+        color: green;
+        display: inline-block;
+        margin-left: -1.3em;
+        /* same as padding-left set on li */
+        width: 1.3em;
+        /* same as padding-left set on li */
     }
 </style>
