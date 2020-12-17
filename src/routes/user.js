@@ -6,6 +6,7 @@ const router = express.Router();
 const auth = require("./../middleware/auth");
 const User = require("../model/User");
 const axios = require("axios");
+
 /**
  * @method - POST
  * @param - /signup
@@ -150,7 +151,7 @@ router.post(
       }
     }
   );
-
+  
   //Get Logged User
   //Obtenemos el usuario usando el token generado. Lo pasamos en la cabecera
   //Hemos añadido el parámetro auth en la ruta --> creamos la función en middleware/auth.js
@@ -164,4 +165,38 @@ router.post(
       res.send({ message: "Error al recuperar el usuario" });
     }
   });
+
+  router.put("/update/:id",
+
+  [
+    check("username", "Por favor, entra un nickname válido")
+    .not()
+    .isEmpty(),
+    check("email", "Por favor, entra un email válido").isEmail(),
+  ],
+
+  async (req, res) =>{
+
+    let id = req.params.id
+    let userData = req.body
+    await User.findByIdAndUpdate(id, userData, (err, userUpdated) => {
+      if (err) res.status(500).send({message: "Error al actualizar usuario"})
+      res.status(200).send({ user: userUpdated }) 
+    
+  
+    });
+   
+
+  });
+
+
+    router.delete("delete/:id", async (req,res)=>{
+      
+      await User.findByIdAndDelete(req.params.id);
+
+      res.status(200).send({ user: userDeleted }) 
+
+    })
+    
+
 module.exports = router;

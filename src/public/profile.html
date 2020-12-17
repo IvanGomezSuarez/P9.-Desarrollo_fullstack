@@ -37,6 +37,10 @@
             location.assign("login.html");
         }
 
+        function edit() {
+            location.assign("editUserData.html");
+        }
+
         function back() {
             window.history.back();
         }
@@ -95,6 +99,9 @@
                             <button type="button" class="btn btn-primary" onclick="back()">
                                 Go back
                             </button>
+                            <button type="button" class="btn btn-primary" onclick="edit()">
+                                Modify
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -103,5 +110,4 @@
 
     </div>
 </body>
-
 </html>
