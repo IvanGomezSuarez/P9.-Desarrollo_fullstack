@@ -164,4 +164,27 @@ router.post(
       res.send({ message: "Error al recuperar el usuario" });
     }
   });
+
+  router.put("/update/:id",
+
+  [
+    check("username", "Por favor, entra un nickname válido")
+    .not()
+    .isEmpty(),
+    check("email", "Por favor, entra un email válido").isEmail(),
+  ],
+
+  async (req, res) =>{
+
+    let id = req.params.id
+    let userData = req.body
+    await User.findByIdAndUpdate(id, userData, (err, userUpdated) => {
+      if (err) res.status(500).send({message: "Error al actualizar usuario"})
+      res.status(200).send({ user: userUpdated }) 
+    
+  
+    });
+   
+
+  });
 module.exports = router;
