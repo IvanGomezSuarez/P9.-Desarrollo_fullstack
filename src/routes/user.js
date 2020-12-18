@@ -6,6 +6,7 @@ const router = express.Router();
 const auth = require("./../middleware/auth");
 const User = require("../model/User");
 const axios = require("axios");
+
 /**
  * @method - POST
  * @param - /signup
@@ -150,7 +151,7 @@ router.post(
       }
     }
   );
-
+  
   //Get Logged User
   //Obtenemos el usuario usando el token generado. Lo pasamos en la cabecera
   //Hemos añadido el parámetro auth en la ruta --> creamos la función en middleware/auth.js
@@ -187,4 +188,14 @@ router.post(
    
 
   });
+
+
+    router.delete("delete/:id", async (req,res)=>{
+      
+      await User.findByIdAndDelete(req.params.id);
+
+      res.status(200).send({ user: userDeleted }) 
+
+    })
+    
 module.exports = router;
