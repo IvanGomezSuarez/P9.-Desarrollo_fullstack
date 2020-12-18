@@ -188,11 +188,12 @@ router.put("/update/:id",
   });
 
 
-router.delete("delete/:id", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
 
-  await User.findByIdAndDelete(req.params.id);
+  let id = req.params.id
+  await User.findByIdAndDelete(id);
 
-  res.status(200).send({ user: userDeleted })
+  res.status(200).send({ message: "Usuario borrado, bella ciao"})
 
 })
 module.exports = router;

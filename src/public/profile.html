@@ -74,7 +74,7 @@
                 }
             };
             axios
-                .put('http://localhost:3000' + '/user/update/'+id, userData, axiosConfig)
+                .put('http://localhost:3000' + '/user/update/' + id, userData, axiosConfig)
                 .then(response => {
                     console.log(userData.email)
                     console.log(userData.username)
@@ -84,6 +84,24 @@
                     localStorage.setItem("email", email);
 
                     location.replace("profile.html")
+                })
+        };
+
+        function deleteUser() {
+
+            let id = localStorage.getItem("id");
+
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                }
+            };
+            axios
+                .delete('http://localhost:3000' + '/user/delete/' + id, axiosConfig)
+                .then(response => {
+                    console.log("Ciao ciao")
+                    location.replace("login.html")
                 })
         };
 
@@ -136,7 +154,8 @@
                             <label>
                                 <script type="text/javascript">document.write(USERNAME)</script>
                             </label>
-                            <input type="text" id="username" class="fadeIn second" name="username" placeholder="username">                          
+                            <input type="text" id="username" class="fadeIn second" name="username"
+                                placeholder="username">
                         </div>
                     </div>
 
@@ -147,7 +166,7 @@
                             <label>
                                 <script type="text/javascript">document.write(EMAIL)</script>
                             </label>
-                            <input type="text" id="email" class="fadeIn second" name="email" placeholder="email"> 
+                            <input type="text" id="email" class="fadeIn second" name="email" placeholder="email">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -158,6 +177,9 @@
                             </button>
                             <button type="button" class="btn btn-primary" onclick="update()">
                                 Modify
+                            </button>
+                            <button type="button" class="btn btn-danger" onclick="deleteUser()">
+                                Borrar
                             </button>
                         </div>
 
