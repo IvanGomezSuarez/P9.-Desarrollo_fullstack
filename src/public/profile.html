@@ -33,11 +33,14 @@
                 .then(response => {
                     console.log(response.data.username)
                     console.log(response.data.email)
+                    console.log(response.data._id)
 
                     let apiUsername = response.data.username
                     localStorage.setItem("username", apiUsername);
                     let apiEmail = response.data.email;
                     localStorage.setItem("email", apiEmail);
+                    let apiId = response.data._id;
+                    localStorage.setItem("id", apiId);
                 })
         }
 
@@ -47,6 +50,8 @@
         var USERNAME = apiUsername;
         let apiEmail = localStorage.getItem("email")
         var EMAIL = apiEmail;
+        let apiId = localStorage.getItem("id")
+        var ID = apiId;
 
         window.onload = function () {
             getData();
