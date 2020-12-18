@@ -170,7 +170,7 @@ router.put("/update/:id",
     check("username", "Por favor, entra un nickname válido")
       .not()
       .isEmpty(),
-    check("email", "Por favor, entra un email válido").isEmail(),
+    check("email", "Por favor, entra un email válido").isEmail().isEmpty(),
   ],
 
   async (req, res) => {
