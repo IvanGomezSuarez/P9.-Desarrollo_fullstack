@@ -12,6 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link href="style.css" rel="stylesheet">
     <!-- Load navbar html with jquery -->
     <script>
@@ -44,22 +45,62 @@
                 })
         }
 
-        function updateData() {
-            window.history.back();
-        }
+        function updateData(req, res) {
 
+            let email = document.getElementById('email').value;
+            let username = document.getElementById('username').value;
+            let id = localStorage.getItem("id")
+
+            const userData = {
+                email: email,
+                username: username
+            }
+
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                }
+            };
+            axios
+                .put('http://localhost:3000' + '/user/update/:'+id, userData, axiosConfig)
+                .then(response => {
+                    console.log(userData.email)
+                    console.log(userData.username)
+
+                    localStorage.setItem("username", username);
+                    localStorage.setItem("email", email);
+
+                    location.replace("profile.html")
+                })
+        };
+
+        function deleteUser() {
+
+            let id = User.getObjectId("_id");
+
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                }
+            };
+            axios
+                .delete('http://localhost:3000' + '/user/delete/:id', userData, axiosConfig)
+
+        };
 
         //Declaramos las variables fuera de la función getData para mantener el scope
         let apiUsername = localStorage.getItem("username")
         var USERNAME = apiUsername;
         let apiEmail = localStorage.getItem("email")
         var EMAIL = apiEmail;
+        let apiId = localStorage.getItem("id")
+        var ID = apiId;
 
         window.onload = function () {
             getData();
         };
-
-        if (!token) {
 
         let getToken = localStorage.getItem('token');
         if (!getToken) {
@@ -118,7 +159,7 @@
                     <div class="form-group row">
                         <label for="user_name" class="col-md-4 col-form-label text-md-right">User
                             Name</label>
-                        <div class="col-md-6" contenteditable="true" >
+                        <div class="col-md-6 editableInput" contenteditable="true">
                             <label disabled>
                                 <script type="text/javascript">document.write(USERNAME)</script>
                             </label>
@@ -128,23 +169,18 @@
                     <div class="form-group row">
                         <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail
                             Address</label>
-                        <div class="col-md-6" contenteditable="true" >
-                            <label disabled >
+                        <div class="col-md-6 editableInput" contenteditable="true">
+                            <label disabled>
                                 <script type="text/javascript">document.write(EMAIL)</script>
                             </label>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="email_address" class="col-md-4 col-form-label text-md-right" ></label>
+                        <label for="email_address" class="col-md-4 col-form-label text-md-right"></label>
                         <div class="col-md-6">
                             <button type="button" class="btn btn-primary" onclick="back()">
                                 Go back
                             </button>
-                            <button type="button" class="btn btn-primary" onclick="edit()">
-                                Modify
-                            </button>
-                        </div>
-                        <div class="col-md-6">
                             <button type="button" class="btn btn-primary" onclick="updateData()">
                                 Modificar
                             </button>
@@ -156,4 +192,12 @@
 
     </div>
 </body>
+
 </html>
+
+<style>
+    .editableInput {
+        background-color: white;
+        border-radius: 10px;
+    }
+</style>

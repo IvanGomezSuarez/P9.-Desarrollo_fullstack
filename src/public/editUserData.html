@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"
-    id="bootstrap-css">
+        id="bootstrap-css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -23,34 +23,34 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-       <!-- Load navbar html with jquery -->
+    <!-- Load navbar html with jquery -->
 
-        <script>
-            $(document).ready(function () {
-                $('#navbar').load("navbar.html");
-            });
-        </script>
-        <script>
-            let getToken = localStorage.getItem('token');
-            if (!getToken) {
-                location.assign("login.html");
-            } else {
-                //let id= User.getObjectId("_id");
-                let usernameLS = localStorage.getItem("username");
-                let emailLS = localStorage.getItem("email");
-                let tokenLS = localStorage.getItem("token");
-                var USERNAME = usernameLS;
-                var EMAIL = emailLS;
-            }
-            function logout() {
-                localStorage.clear();
-                location.assign("login.html");
-            }
+    <script>
+        $(document).ready(function () {
+            $('#navbar').load("navbar.html");
+        });
+    </script>
+    <script>
+        let getToken = localStorage.getItem('token');
+        if (!getToken) {
+            location.assign("login.html");
+        } else {
+            //let id= User.getObjectId("_id");
+            let usernameLS = localStorage.getItem("username");
+            let emailLS = localStorage.getItem("email");
+            let tokenLS = localStorage.getItem("token");
+            var USERNAME = usernameLS;
+            var EMAIL = emailLS;
+        }
+        function logout() {
+            localStorage.clear();
+            location.assign("login.html");
+        }
 
-            function back() {
-                window.history.back();
-            }
-        </script>
+        function back() {
+            window.history.back();
+        }
+    </script>
 
     <title>Update Profile</title>
 </head>
@@ -63,14 +63,14 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">Update Profile</div>
-                        <div class="card-body">          
+                        <div class="card-body">
                             <div class="form-group row">
                                 <label for="user_name" class="col-md-4 col-form-label text-md-right">User
                                     Name</label>
                                 <div class="col-md-6">
-                                    
+
                                     <input type="text" id="username" class="form-control" name="username">
-                                    
+
                                 </div>
                             </div>
 
@@ -78,7 +78,7 @@
                                 <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail
                                     Address</label>
                                 <div class="col-md-6">
-                                    <input type="text" id="email" class="form-control" name="email" value= "">
+                                    <input type="text" id="email" class="form-control" name="email" value="">
                                 </div>
                             </div>
 
@@ -87,25 +87,24 @@
                                 <button type="button" class="btn btn-primary" onclick="back()">
                                     Go back
                                 </button>
-                                <button type="submit" class="btn btn-primary" id="rgstr_"
-                                    onClick= "update()" value="put">
+                                <button type="submit" class="btn btn-primary" id="rgstr_" onClick="update()"
+                                    value="put">
                                     Save
                                 </button>
-                                <button type="submit" class="btn btn-primary" id="rgstr_"
-                                     onClick= "deleteUser()">
+                                <button type="submit" class="btn btn-primary" id="rgstr_" onClick="deleteUser()">
                                     Delete Account
                                 </button>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+        </div>
 
-</div>
+        </div>
 
-</main>
+    </main>
 
     <script>
         //Validate that all values have been introduced
@@ -124,7 +123,7 @@
         }
         //Update function
 
-        function update(req,res) {
+        function update(req, res) {
 
             let email = document.getElementById('email').value;
             let username = document.getElementById('username').value;
@@ -133,39 +132,39 @@
                 username: username
             }
 
-      let axiosConfig = {
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          "Access-Control-Allow-Origin": "*",
-        }
-      };
-      axios
-        .put('http://localhost:3000' + '/user/update/:id', userData, axiosConfig)
-        .then(response => {
-          console.log(userData.email)
-          console.log(userData.username)
-        
-        localStorage.setItem("username", username);
-        localStorage.setItem("email", email);
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                }
+            };
+            axios
+                .put('http://localhost:3000' + '/user/update/:id', userData, axiosConfig)
+                .then(response => {
+                    console.log(userData.email)
+                    console.log(userData.username)
 
-        location.replace("profile.html")
-        })
-    };
+                    localStorage.setItem("username", username);
+                    localStorage.setItem("email", email);
 
-    function deleteUser(){
-    
-        let id= User.getObjectId("_id");
+                    location.replace("profile.html")
+                })
+        };
 
-    let axiosConfig = {
-    headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-        "Access-Control-Allow-Origin": "*",
-    }
-    };
-    axios
-    .delete('http://localhost:3000' + '/user/delete/:id', userData, axiosConfig)
-    
-};
+        function deleteUser() {
+
+            let id = User.getObjectId("_id");
+
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                }
+            };
+            axios
+                .delete('http://localhost:3000' + '/user/delete/:id', userData, axiosConfig)
+
+        };
 
     </script>
 </body>
