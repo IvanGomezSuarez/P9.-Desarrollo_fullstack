@@ -31,7 +31,7 @@
         }
 
         function back() {
-            window.history.back();
+            location.assign("index.html");
         }
 
         //If li->ul->events equals 2 it means it's the winner. We call it every second to check if there is a winner
@@ -77,8 +77,11 @@
     <div id="navbar"></div>
     <div class="row h-100">
         <div class="col-sm-12 my-5">
-            <div class="controls-wrapper">
+            <div class="controls-wrapper alert alert-success" role="alert">
                 <ul id="events"></ul>
+            </div>
+            <div class="alert alert-info">
+                <p>Consigue 5 cuadrados en línea para ganar</p>
             </div>
             <div class="w-25 mx-auto">
                 <canvas width="600" height="600">
