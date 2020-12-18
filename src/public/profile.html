@@ -57,6 +57,36 @@
             getData();
         };
 
+        function update() {
+
+            let email = document.getElementById('email').value;
+            let username = document.getElementById('username').value;
+            let id = localStorage.getItem("id");
+            const userData = {
+                email: email,
+                username: username
+            }
+
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "Access-Control-Allow-Origin": "*",
+                }
+            };
+            axios
+                .put('http://localhost:3000' + '/user/update/'+id, userData, axiosConfig)
+                .then(response => {
+                    console.log(userData.email)
+                    console.log(userData.username)
+                    console.log("Dentro respuesta axios")
+
+                    localStorage.setItem("username", username);
+                    localStorage.setItem("email", email);
+
+                    location.replace("profile.html")
+                })
+        };
+
         if (!token) {
             location.assign("login.html");
         }
@@ -103,9 +133,10 @@
                         <label for="user_name" class="col-md-4 col-form-label text-md-right">User
                             Name</label>
                         <div class="col-md-6">
-                            <label disabled>
+                            <label>
                                 <script type="text/javascript">document.write(USERNAME)</script>
                             </label>
+                            <input type="text" id="username" class="fadeIn second" name="username" placeholder="username">                          
                         </div>
                     </div>
 
@@ -113,9 +144,10 @@
                         <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail
                             Address</label>
                         <div class="col-md-6">
-                            <label disabled>
+                            <label>
                                 <script type="text/javascript">document.write(EMAIL)</script>
                             </label>
+                            <input type="text" id="email" class="fadeIn second" name="email" placeholder="email"> 
                         </div>
                     </div>
                     <div class="form-group row">
@@ -124,7 +156,11 @@
                             <button type="button" class="btn btn-primary" onclick="back()">
                                 Go back
                             </button>
+                            <button type="button" class="btn btn-primary" onclick="update()">
+                                Modify
+                            </button>
                         </div>
+
                     </div>
                 </div>
             </div>
