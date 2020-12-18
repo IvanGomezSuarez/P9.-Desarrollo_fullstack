@@ -32,6 +32,7 @@
             var EMAIL = emailLS;
         }
 
+        
         function logout() {
             localStorage.clear();
             location.assign("login.html");
@@ -77,17 +78,17 @@
                     <div class="form-group row">
                         <label for="user_name" class="col-md-4 col-form-label text-md-right">User
                             Name</label>
-                        <div class="col-md-6">
+                        <div class="col-md-6" contenteditable="true">
                             <label disabled>
                                 <script type="text/javascript">document.write(USERNAME)</script>
                             </label>
                         </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" >
                         <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail
                             Address</label>
-                        <div class="col-md-6">
+                        <div class="col-md-6" contenteditable="true">
                             <label disabled>
                                 <script type="text/javascript">document.write(EMAIL)</script>
                             </label>
@@ -99,8 +100,15 @@
                             <button type="button" class="btn btn-primary" onclick="back()">
                                 Go back
                             </button>
-                            <button type="button" class="btn btn-primary" onclick="edit()">
-                                Modify
+                            <button type="submit" class="btn btn-primary" id="rgstr_"
+                                onClick= "update()" value="put">
+                                Save
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="rgstr_"
+                                onClick= "deleteUser()">
+                                Delete Account
+                            </button>
+                            
                             </button>
                         </div>
                     </div>
@@ -109,5 +117,51 @@
         </div>
 
     </div>
+<script>
+    //Update function
+
+    function update(req,res) {
+
+        let email = document.getElementById('email').value;
+        let username = document.getElementById('username').value;
+        const userData = {
+            email: email,
+            username: username
+        }
+
+  let axiosConfig = {
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+      "Access-Control-Allow-Origin": "*",
+    }
+  };
+  axios
+    .put('http://localhost:3000' + '/user/update/:id', userData, axiosConfig)
+    .then(response => {
+      console.log(userData.email)
+      console.log(userData.username)
+    
+    localStorage.setItem("username", username);
+    localStorage.setItem("email", email);
+
+    location.replace("profile.html")
+    })
+};
+
+function deleteUser(){
+
+    let id= User.getObjectId("_id");
+
+let axiosConfig = {
+headers: {
+    'Content-Type': 'application/json;charset=UTF-8',
+    "Access-Control-Allow-Origin": "*",
+}
+};
+axios
+.delete('http://localhost:3000' + '/user/delete/:id', userData, axiosConfig)
+
+};
+</script>
 </body>
 </html>
